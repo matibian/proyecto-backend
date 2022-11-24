@@ -9,10 +9,14 @@ const app = express();
 const port = process.env.PORT || 8080;
 const cors = require("cors")
 
+
 const contenedor = new Container();
 const carrito = new Carrito();
 
-
+app.use(function(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+  next();
+});
 
 app.use(cors({
   origin : "*",
@@ -142,13 +146,16 @@ routerCarrito.post("/", async (req, res) => {
 });
 
 routerCarrito.post("/:id/productos", async (req, res) => {
+
+
+  
   try {
-  const idCart = req.params.id;
-  const { id } = req.body;
-  carrito.postById(idCart, id)
-  console.log(id)
+  const idCart = await req.params.id;
+  const id = await req.body;
+  await carrito.postById(idCart, id)
+  console.log(req.body)
   console.log("Agregado")
-  res.json(id)
+  res.json(req.body)
   } catch (error) {
     res.json({ error: true, msj: "error" });
   }
@@ -192,6 +199,3 @@ routerCarrito.delete("/:id", async (req, res) => {
 });
 
 
-
-
-// DELETE: '/:id' - Vacía un carrito y lo elimina.

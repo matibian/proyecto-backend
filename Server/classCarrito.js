@@ -56,9 +56,9 @@ module.exports = class Carrito {
       console.log(idCart, idProd);
 
       cart.productos.push(prod);
-      const carritosString = JSON.stringify(newDataCart);
+      // const carritosString = JSON.stringify(newDataCart);
 
-      await fs.promises.writeFile("./api/prodCarrito.json", carritosString);
+      // await fs.promises.writeFile("./api/prodCarrito.json", carritosString);
     } catch (e) {
       console.log(e);
     }

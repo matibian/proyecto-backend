@@ -1,8 +1,9 @@
 const API_URL = "http://localhost:8080/api/";
-const isAdmin = true;
+const isAdmin = false;
 
-let productos = document.getElementById("productos");
+// let productos = document.getElementById("productos");
 // productos.addEventListener ("click", e => {
+//   e.preventDefault();
   
 //   console.log(e.target.dataset)
   
@@ -11,7 +12,6 @@ let productos = document.getElementById("productos");
 //     console.log(e.target.dataset.funcion)
 //     comprarProd(e.target.dataset.id)
 //   }
-//   e.preventDefault();
 // })
 
 async function getResponse() {
@@ -33,7 +33,7 @@ async function getResponse() {
           ${
             isAdmin
               ? `<button type="button" class="btn btn-secondary botonAct" disabled>Actualizar</button><i class="fa-solid fa-trash" onclick="eliminarProd(${prod.id})" data-id="${prod.id}"></i>`
-              : `<button  class="compra btn btn-secondary" data-funcion="comprarProd" data-id="${prod.id}" >Comprar</button>`
+              : `<form onsubmit = "return false"><button type="submit"  class="compra btn btn-secondary" onclick ="comprarProd(${prod.id})" >Comprar</button></form>`
           }
 
         </div>
@@ -74,21 +74,22 @@ function eliminarProd(id) {
 //         // comprarProd(this); // 'this' refers to the current button on for loop
 //     }, false);
 // })
-
 function comprarProd(id){
 
 
 let request = {
   method: "POST",
   body: JSON.stringify({
-    id: id,
-  }),
+    id : id
+  })
 };
 
-fetch(API_URL + "carrito/2/productos", request)
+console.log(request)
+
+fetch("http://localhost:8080/api/carrito/2/productos", request)
   .then((res) => res.json())
   .then((data) => {
-    console.log(request.body);
+    console.log(data);
     console.log("Producto agregado al carrito");
     
   })
