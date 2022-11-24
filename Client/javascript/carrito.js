@@ -1,8 +1,8 @@
-const URL_API = "http://localhost:8080/api/";
+const API_URL = "https://proyecto-backend-server.glitch.me/api/";
 
 async function productos(){
 
-    await fetch(URL_API + "carrito/2/productos")
+    await fetch(API_URL + "carrito/2/productos")
   .then((res) => res.json())
   .then((data) => {
     let cart = document.getElementById("prodCart");
@@ -63,11 +63,11 @@ productos()
 
 function eliminarProd(id){
 
-      fetch(URL_API+`carrito/2/productos/${id}` , {method:"DELETE"} )
+      fetch(API_URL+`carrito/2/productos/${id}` , {method:"DELETE"} )
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
-            // location.reload()
+            location.reload()
         })
         .catch((error) => console.error("Error: ", error));
 
