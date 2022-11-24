@@ -43,22 +43,34 @@ module.exports = class Carrito {
     }
   };
 
-  postById = async (idCart, idProd) => {
+  postById = async (idCart, idProd, timestamp) => {
     try {
       const readDataCart = await fs.promises.readFile("./api/prodCarrito.json");
       const readDataProd = await fs.promises.readFile("./api/productos.json");
-
+      
       const newDataCart = JSON.parse(readDataCart);
       const newDataProd = JSON.parse(readDataProd);
+      
+
       const cart = newDataCart.find((cart) => cart.carrito_id == idCart);
+
+      let isInCart = cart.productos.some(prod=>prod.id == idProd)
+      
       const prod = newDataProd.find((prod) => prod.id == idProd);
+
+      console.log(isInCart)
+      if (isInCart == false) {
+        prod.timestamp = timestamp
+        cart.productos.push(prod);
+        let carritosString = JSON.stringify(newDataCart);
+  
+        await fs.promises.writeFile("./api/prodCarrito.json", carritosString);
+        console.log("agregado al carrito")
+      }
 
       console.log(idCart, idProd);
 
-      cart.productos.push(prod);
-      // const carritosString = JSON.stringify(newDataCart);
-
-      // await fs.promises.writeFile("./api/prodCarrito.json", carritosString);
+      
     } catch (e) {
       console.log(e);
     }

@@ -145,24 +145,21 @@ routerCarrito.post("/", async (req, res) => {
   res.json((await carrito.newCart()) ?? { error: "no encontrado" });
 });
 
-routerCarrito.post("/:id/productos", async (req, res) => {
+routerCarrito.post("/:id/productos/:id_prod", async (req, res) => {
 
-
-  
   try {
-  const idCart = await req.params.id;
-  const id = await req.body;
-  await carrito.postById(idCart, id)
-  console.log(req.body)
-  console.log("Agregado")
-  res.json(req.body)
+  const idCart = req.params.id;
+  const idProd = req.params.id_prod;
+  let timestamp = Date.now();
+  await carrito.postById(idCart, idProd, timestamp)
+  res.json(id)
   } catch (error) {
     res.json({ error: true, msj: "error" });
   }
 });
 
 
-routerCarrito.get("/:id/productos", async (req, res) => {
+routerCarrito.get("/:id/productos/", async (req, res) => {
   try {
     const { id } = req.params;
       productos = await carrito.getAll(id)

@@ -61,32 +61,10 @@ function eliminarProd(id) {
 }
 
 
-// let buttons = document.querySelectorAll('compra');
-// buttons.forEach (b => {
-
-
-//     b.addEventListener('click', function (event) {  
-//         // prevent browser's default action
-//         event.preventDefault();
-//         console.log(event.target)
-
-//         // call your awesome function here
-//         // comprarProd(this); // 'this' refers to the current button on for loop
-//     }, false);
-// })
 function comprarProd(id){
 
 
-let request = {
-  method: "POST",
-  body: JSON.stringify({
-    id : id
-  })
-};
-
-console.log(request)
-
-fetch("http://localhost:8080/api/carrito/2/productos", request)
+fetch(`http://localhost:8080/api/carrito/2/productos/${id}`, {method : "POST"})
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
