@@ -28,12 +28,12 @@
         "timestamp": 1669315774329
       },
       {
-        "name": "Pantalon",
-        "price": 6000,
-        "id": 2,
-        "thumbnail": "https://www.cheeky.com.ar/uploads/picture/image/124121/V2300101_40_1.jpg",
+        "name": "Chaleco verde",
+        "price": 15000,
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_632594-MLA49682725306_042022-O.webp",
+        "id": 8,
         "description": "loremipsum dolor sit amet, consectetur adipiscing",
-        "timestamp": 1669315777068
+        "timestamp": 1671543875826
       }
     ]
   }
