@@ -11,7 +11,7 @@ admin.initializeApp({
 const db = getFirestore();
 
 
-class ContenedorMongoDB {
+class ContenedorFirebase {
     constructor(nombreColeccion) {
         this.collection = db.collection(nombreColeccion);
 
@@ -126,5 +126,5 @@ class ContenedorMongoDB {
 }
 
 
-export default ContenedorMongoDB;
+export default ContenedorFirebase;
 

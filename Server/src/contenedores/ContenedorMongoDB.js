@@ -10,7 +10,7 @@ class ContenedorMongoDB {
 
   async getAll(id) {
     if (id){
-      const carrito = await this.model.find({});
+      const carrito = await this.model.find({carrito_id: id});
       console.log(carrito)
 
       return carrito
